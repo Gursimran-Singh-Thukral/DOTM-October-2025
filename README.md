@@ -41,6 +41,8 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Change currency by editing `currency()` in `app.js`.
 - Tweak theme colors via CSS variables in `styles.css`.
 
+
+#### Yo
 ## Possible Enhancements
 - Personalize balances per current user identity.
 - Add categories for expenses and a category pie chart.
