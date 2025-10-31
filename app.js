@@ -236,7 +236,7 @@
     const colors = ['#2563eb','#16a34a','#f59e0b','#ef4444','#7c3aed','#0891b2','#dc2626','#0ea5e9'];
 
     return h('div',{style:{height:'100%',display:'flex',flexDirection:'column'}},
-      h('div',{className:'card card-pad', style:{borderRadius:0,border:'none',borderBottom:'1px solid var(--border)'}},
+      h('div',{className:'card card-pad group-hero', style:{borderRadius:0,border:'none',borderBottom:'1px solid var(--border)'}},
         h('div',{className:'row',style:{justifyContent:'space-between'}},
           h('div',{className:'row',style:{gap:'12px'}},
             h('button',{className:'btn', onClick:onBack}, '← Back'),
@@ -341,6 +341,8 @@
     const activeGroup = groups.find(g=>g.id===activeGroupId)||null;
 
     const overall = useMemo(()=>{ let pos=0, spent=0, expenses=0; for(const g of groups){ const dues=simplifyDebts(g.members,g.expenses); for(const d of dues) pos+=d.amount; for(const e of g.expenses){ spent+=e.amount; expenses++; } } return {unsettled:pos, spent, expenses}; }, [groups.map(g=>g.id+g.expenses.length+g.members.length).join('|')]);
+    useEffect(()=>{ document.body.classList.toggle('pastel-page', !!activeGroup); }, [!!activeGroup]);
+
     const coinPositions = useMemo(()=>{
       // A few floating coins for fun on the main page
       const n = 6; const arr=[]; for(let i=0;i<n;i++){ arr.push({ left: Math.round(8+Math.random()*80)+'%', top: Math.round(18+Math.random()*55)+'%', delay: (Math.random()*1.2).toFixed(2)+'s' }); } return arr;
@@ -477,6 +479,19 @@
         )
       ):
       h('main',{style:{height:'calc(100vh - 57px)'}}, h(GroupDashboard,{group:activeGroup,onBack:()=>setActiveGroupId(null),onUpdateGroup:updateGroup})),
+      // Site footer
+      h('footer',{className:'site-footer'},
+        h('div',{className:'inner'},
+          h('div',{className:'brand', style:{cursor:'pointer'}, onClick:()=>{ setShowLanding(true); setActiveGroupId(null); }},
+            h('div',{className:'logo'},'ES'), h('span',null,'ExpenseShare')
+          ),
+          h('div',{className:'links'},
+            h('a',{href:'#', onClick:(e)=>{ e.preventDefault(); setShowLanding(true); setActiveGroupId(null); }}, 'Home'),
+            h('a',{href:'#', onClick:(e)=>{ e.preventDefault(); addDemo(); }}, 'Add Demo'),
+            h('a',{href:'#', onClick:(e)=>{ e.preventDefault(); localStorage.removeItem(LS_SEEN); setShowLanding(true); }}, 'Show Landing')
+          )
+        )
+      ),
       h(CreateGroupModal,{open:showCreate,onClose:()=>setShowCreate(false),onCreate:createGroup})
     );
   }

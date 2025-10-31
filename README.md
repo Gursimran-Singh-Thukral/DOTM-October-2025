@@ -25,12 +25,31 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Export group data to JSON
 - Reset: per-group and global
 
-## Developed with ❤️ by the **Vibers** at **IIT Jammu**:
-
-- 🎯 [Gursimran](https://github.com/Gursimran-Singh-Thukral)
-- 🔮 [Hemant Nagar](https://google.com)
-- 🎨 [Manthan](https://google.com)
-- 🚀 [Daksh Singhal](https://github.com/Leviethal)
+## Data Model (LocalStorage)
+- Key: `expenseshare_v1`
+- Shape:
+```json
+{
+  "groups": [
+    {
+      "id": "string",
+      "name": "Trip to Goa",
+      "members": ["Alice", "Bob"],
+      "expenses": [
+        {
+          "id": "string",
+          "description": "Dinner",
+          "amount": 100,
+          "payer": "Alice",
+          "splitType": "equal|exact|percent|shares",
+          "splits": [{ "member": "Bob", "amount": 50 }],
+          "createdAt": 1710000000000
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Notes
 - Currency is displayed as INR via `toLocaleString('en-IN', { currency: 'INR' })`.
@@ -46,9 +65,39 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Change currency by editing `currency()` in `app.js`.
 - Tweak theme colors via CSS variables in `styles.css`.
 
+## Theming & Appearance
+- Light and Dark modes with persistence (`expenseshare_theme`).
+- Optional pastel look on Group pages (light theme only) for an airy feel.
+- Animated background blobs, aurora, floating coins, and confetti (toggleable).
 
-#### Yo
+## Navigation & UX
+- Landing/Home page with CTAs: Enter Dashboard, Create First Group.
+- Sticky header with navigation (Home, Dashboard, Settings).
+- Zoom controls for the dashboard (scales the main container smoothly).
+- Quick actions: Add Demo Data, Import JSON (hidden file input).
+- Recent Activity and Leaderboard sections to fill empty space usefully.
+- Global footer with brand and helpful links.
+
+## Import/Export & Demo
+- Export: per-group JSON from Group page.
+- Import: Dashboard → Quick actions → Import JSON. Supports `{ group }` or `{ groups }`.
+- Add Demo Data: instantly creates a sample group to try features.
+
+## Persistence
+- All data is stored in LocalStorage under key `expenseshare_v1`.
+- The "seen landing" flag uses `expenseshare_seen_landing`.
+
+## Accessibility & Performance
+- High-contrast text and components across themes.
+- Respects `prefers-reduced-motion` for ambient animations.
+- React hooks + memoization for lists, stats, and computed views.
+
+## Keyboard Tips
+- In modals, Enter can add members; Esc closes.
+
 ## Possible Enhancements
 - Personalize balances per current user identity.
-- Add categories for expenses and a category pie chart.
-- Entrance animations for list insertions with CSS keyframes.
+- Categories for expenses and a category pie chart.
+- Always-on landing option or onboarding guide.
+- Filters: by member, date range, amount range on Dashboard.
+- Keyboard shortcuts (e.g., N = New Group, A = Add Expense in group).
