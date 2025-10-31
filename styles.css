@@ -255,3 +255,20 @@ table.table .cell-muted{color:var(--muted);font-size:12px}
 /* Page transitions with blur */
 .route{animation:fadeSlideBlur .42s cubic-bezier(.25,.46,.45,.94)}
 @keyframes fadeSlideBlur{0%{opacity:0;transform:translateY(12px);filter:blur(6px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+
+/* Hide scrollbars across browsers but preserve scrolling */
+html, body, #root{
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* WebKit-based browsers */
+*::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb{background:transparent}
+*::-webkit-scrollbar-track{background:transparent}
+
+/* Note: This hides the visible scrollbar but preserves scrolling behavior. */
