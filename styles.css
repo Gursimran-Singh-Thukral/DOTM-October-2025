@@ -295,3 +295,20 @@ html:not([data-theme="dark"]) body.pastel-page .pill{background:#eef2ff;border-c
 html:not([data-theme="dark"]) body.pastel-page .btn-success{background:linear-gradient(135deg,#10b981,#22c55e); border-color:transparent; color:#fff; box-shadow:0 8px 18px rgba(34,197,94,.18)}
 /* Strengthen dues amount color on pastel */
 html:not([data-theme="dark"]) body.pastel-page .dues .amt{color:#e11d48}
+
+/* Hide scrollbars across browsers but preserve scrolling */
+html, body, #root{
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* WebKit-based browsers */
+*::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb{background:transparent}
+*::-webkit-scrollbar-track{background:transparent}
+
+/* Note: This hides the visible scrollbar but preserves scrolling behavior. */
