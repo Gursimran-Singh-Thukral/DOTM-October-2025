@@ -378,7 +378,7 @@
     return h('div',{style:{minHeight:'100%'}},
       h('header',{className:'header'},
         h('div',{className:'header-inner'},
-          h('div',{className:'brand'}, h('div',{className:'logo'},'ES'), h('div',{style:{fontWeight:700,fontSize:'18px'}}, 'ExpenseShare ✨')),
+          h('div',{className:'brand', style:{cursor:'pointer'}, onClick:()=>{ setShowLanding(true); setActiveGroupId(null); }}, h('div',{className:'logo'},'ES'), h('div',{style:{fontWeight:700,fontSize:'18px'}}, 'ExpenseShare ✨')),
           h('div',{className:'row'},
             h('nav',{className:'nav'},
               h('button',{className:`nav-btn ${showLanding? 'active':''}`, onClick:()=> setShowLanding(true)}, 'Home'),
@@ -459,6 +459,13 @@
           )
         )
         ,
+        // Ambient aurora + sparks to fill space
+        funEnabled && h('div',{className:'ambient-layer'},
+          h('div',{className:'aurora'}),
+          h('div',{className:'sparks'},
+            Array.from({length:18}).map((_,i)=> h('span',{key:i,className:'spark', style:{left:(5+Math.random()*90)+'%', top:(55+Math.random()*35)+'%', animationDelay:(Math.random()*2).toFixed(2)+'s'}}))
+          )
+        ),
         // Floating action button for new group
         h('button',{className:'fab', onClick:()=> setShowCreate(true)}, '+ New Group')
         ,
