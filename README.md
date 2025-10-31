@@ -25,31 +25,7 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Export group data to JSON
 - Reset: per-group and global
 
-## Data Model (LocalStorage)
-- Key: `expenseshare_v1`
-- Shape:
-```json
-{
-  "groups": [
-    {
-      "id": "string",
-      "name": "Trip to Goa",
-      "members": ["Alice", "Bob"],
-      "expenses": [
-        {
-          "id": "string",
-          "description": "Dinner",
-          "amount": 100,
-          "payer": "Alice",
-          "splitType": "equal|exact|percent|shares",
-          "splits": [{ "member": "Bob", "amount": 50 }],
-          "createdAt": 1710000000000
-        }
-      ]
-    }
-  ]
-}
-```
+
 
 ## Notes
 - Currency is displayed as INR via `toLocaleString('en-IN', { currency: 'INR' })`.
@@ -65,6 +41,8 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Change currency by editing `currency()` in `app.js`.
 - Tweak theme colors via CSS variables in `styles.css`.
 
+
+#### Yo
 ## Possible Enhancements
 - Personalize balances per current user identity.
 - Add categories for expenses and a category pie chart.
