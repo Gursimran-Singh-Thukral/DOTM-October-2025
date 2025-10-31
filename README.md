@@ -25,7 +25,12 @@ A zero-build React app you can open directly in the browser. All state is stored
 - Export group data to JSON
 - Reset: per-group and global
 
+## Developed with ❤️ by the **Vibers** at **IIT Jammu**:
 
+- 🎯 [Gursimran](https://github.com/Gursimran-Singh-Thukral)
+- 🔮 [Hemant Nagar](https://google.com)
+- 🎨 [Manthan](https://google.com)
+- 🚀 [Daksh Singhal](https://github.com/Leviethal)
 
 ## Notes
 - Currency is displayed as INR via `toLocaleString('en-IN', { currency: 'INR' })`.
